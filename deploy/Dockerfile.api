@@ -1,0 +1,14 @@
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
+
+ENV ASPNETCORE_HTTP_PORTS=8080 \
+    PersistentCache__BasePath=/var/cache/fellowshipanalyzer
+
+WORKDIR /app
+COPY publish/api/ ./
+
+RUN mkdir -p /var/cache/fellowshipanalyzer && chown -R app:app /var/cache/fellowshipanalyzer
+
+USER app
+EXPOSE 8080
+
+ENTRYPOINT ["dotnet", "FellowshipAnalyzer.Api.Web.dll"]
