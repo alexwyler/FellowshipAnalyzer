@@ -22,7 +22,10 @@ builder.RootComponents.Add<Routes>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 var hostBaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
-builder.Services.AddScoped(_ => new HttpClient { BaseAddress = hostBaseAddress });
+var apiBaseAddress = Uri.TryCreate(builder.Configuration["Api:BaseUrl"], UriKind.Absolute, out var apiBase)
+    ? apiBase
+    : hostBaseAddress;
+builder.Services.AddScoped(_ => new HttpClient { BaseAddress = apiBaseAddress });
 
 var codex = builder.Configuration.GetSection(CodexOptions.SectionName);
 Codex.Use(new CodexOptions
