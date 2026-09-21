@@ -125,4 +125,25 @@ public static class FellowshipLogsServiceCollectionExtensions
         services.AddSingleton<IPersistentCache, BlobPersistentCache>();
         return services;
     }
+
+    /// <summary>
+    /// Registers <see cref="FilePersistentCache"/> as the <see cref="IPersistentCache"/> implementation.
+    /// For single-instance hosts with local disk and no Azure Storage connection; call this from the
+    /// host after <see cref="AddFellowshipLogsApi"/> instead of <see cref="AddBlobPersistentCache"/>.
+    /// </summary>
+    public static IServiceCollection AddFilePersistentCache(
+        this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        var options = new FilePersistentCacheOptions();
+        configuration.GetSection(FilePersistentCacheOptions.SectionName).Bind(options);
+        if (string.IsNullOrWhiteSpace(options.BasePath))
+        {
+            options.BasePath = "persistent-cache";
+        }
+
+        services.AddSingleton(options);
+        services.AddSingleton<IPersistentCache, FilePersistentCache>();
+        return services;
+    }
 }

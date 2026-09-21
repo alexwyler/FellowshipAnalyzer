@@ -109,6 +109,7 @@ DocProject/Help/*.hhp
 DocProject/Help/Html2
 DocProject/Help/html
 publish/
+persistent-cache/
 *.[Pp]ublish.xml
 *.azurePubxml
 *.pubxml
