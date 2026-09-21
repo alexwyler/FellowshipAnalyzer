@@ -4,6 +4,7 @@
     <Project Path="src/FellowshipAnalyzer/FellowshipAnalyzer.Api.GraphQL/FellowshipAnalyzer.Api.GraphQL.csproj" />
     <Project Path="src/FellowshipAnalyzer/FellowshipAnalyzer.Api/FellowshipAnalyzer.Api.csproj" />
     <Project Path="src/FellowshipAnalyzer/FellowshipAnalyzer.DevApi/FellowshipAnalyzer.DevApi.csproj" />
+    <Project Path="src/FellowshipAnalyzer/FellowshipAnalyzer.Api.Web/FellowshipAnalyzer.Api.Web.csproj" />
   </Folder>
   <Folder Name="/App/">
     <Project Path="src/FellowshipAnalyzer/FellowshipAnalyzer.DevHost/FellowshipAnalyzer.DevHost.csproj" />
